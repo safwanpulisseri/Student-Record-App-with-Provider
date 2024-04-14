@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
@@ -81,14 +80,6 @@ class _ScreenHomeState extends State<ScreenHome> {
                       children: [
                         const SizedBox(
                           height: 20,
-                        ),
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 30,
-                          backgroundImage: data.image.isNotEmpty
-                              ? FileImage(File(data.image))
-                              : const AssetImage('assets/images/hero.png')
-                                  as ImageProvider,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
@@ -60,12 +59,6 @@ class StudentSearchDelegate extends SearchDelegate<String> {
       itemBuilder: (context, index) {
         final Studentmodel student = suggestionList[index];
         return ListTile(
-          leading: CircleAvatar(
-            radius: 25,
-            backgroundImage: student.image.isNotEmpty
-                ? FileImage(File(student.image))
-                : const AssetImage('assets/images/hero.png') as ImageProvider,
-          ),
           title: Text(student.name),
           onTap: () {
             Navigator.push(

@@ -10,7 +10,7 @@ Future<void> initializeDatabase() async {
   _db = await openDatabase('student.db', version: 1,
       onCreate: (Database db, int version) async {
     await db.execute(
-        'CREATE TABLE student(id INTEGER PRIMARY KEY ,name TEXT,age TEXT,address TEXT,mobile TEXT,image TEXT)');
+        'CREATE TABLE student(id INTEGER PRIMARY KEY ,name TEXT,age TEXT,address TEXT,mobile TEXT)');
   });
 
   // Retrieve data from the database during initialization
@@ -19,8 +19,8 @@ Future<void> initializeDatabase() async {
 
 Future<void> addStudent(Studentmodel value) async {
   await _db.rawInsert(
-      'INSERT INTO student(name,age,address,mobile,image)VALUES(?,?,?,?,?)',
-      [value.name, value.age, value.address, value.mobile, value.image]);
+      'INSERT INTO student(name,age,address,mobile)VALUES(?,?,?,?)',
+      [value.name, value.age, value.address, value.mobile]);
   getAllStudents();
 }
 
@@ -39,14 +39,13 @@ Future<void> deleteStudent(int id) async {
   getAllStudents();
 }
 
-Future<void> updateStudent(int id, String name, String age, String address,
-    String mobile, String image) async {
+Future<void> updateStudent(
+    int id, String name, String age, String address, String mobile) async {
   final data = {
     'name': name,
     'age': age,
     'address': address,
     'mobile': mobile,
-    'image': image
   };
   await _db.update("student", data, where: 'id=?', whereArgs: [id]);
   getAllStudents();

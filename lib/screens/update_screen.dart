@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
 import 'package:student_details_app/screens/home_screen.dart';
@@ -19,7 +17,6 @@ class _ScreenUpdateState extends State<ScreenUpdate> {
   late TextEditingController _ageController;
   late TextEditingController _addressController;
   late TextEditingController _mobileController;
-  late String? image;
 
   @override
   void initState() {
@@ -30,7 +27,6 @@ class _ScreenUpdateState extends State<ScreenUpdate> {
         TextEditingController(text: widget.studentDetails.address);
     _mobileController =
         TextEditingController(text: widget.studentDetails.mobile);
-    image = widget.studentDetails.image;
   }
 
   @override
@@ -76,56 +72,6 @@ class _ScreenUpdateState extends State<ScreenUpdate> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text(
-                                  'Select Option',
-                                  textAlign: TextAlign.center,
-                                ),
-                                actions: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          getImage(ImageSource.camera, context);
-                                          Navigator.of(context).pop();
-                                        },
-                                        icon: const Icon(
-                                          Icons.camera_alt_rounded,
-                                        ),
-                                      ),
-                                      IconButton(
-                                        onPressed: () {
-                                          getImage(
-                                              ImageSource.gallery, context);
-                                          Navigator.of(context).pop();
-                                        },
-                                        icon: const Icon(
-                                          Icons.image,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 50,
-                          backgroundImage: image != null
-                              ? FileImage(File(image!))
-                              : const AssetImage('assets/images/hero.png')
-                                  as ImageProvider,
-                        ),
-                      ),
                       TextFormField(
                         controller: _nameController,
                         decoration: const InputDecoration(
@@ -175,9 +121,6 @@ class _ScreenUpdateState extends State<ScreenUpdate> {
                   _ageController.text,
                   _addressController.text,
                   _mobileController.text,
-                  image ??
-                      widget.studentDetails
-                          .image, // Use the new image if available, otherwise use the existing image
                 );
                 Navigator.push(context,
                     MaterialPageRoute(builder: (ctx) => const ScreenHome()));
@@ -203,14 +146,5 @@ class _ScreenUpdateState extends State<ScreenUpdate> {
         ),
       ),
     );
-  }
-
-  Future<void> getImage(ImageSource source, BuildContext context) async {
-    final pickedImage = await ImagePicker().pickImage(source: source);
-    if (pickedImage != null) {
-      setState(() {
-        image = pickedImage.path;
-      });
-    }
   }
 }

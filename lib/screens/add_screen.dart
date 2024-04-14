@@ -1,10 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
-
-String? image;
 
 class ScreenAdd extends StatefulWidget {
   const ScreenAdd({super.key});
@@ -57,57 +53,6 @@ class _ScreenAddState extends State<ScreenAdd> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text(
-                                    'Select image from...',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  actions: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            getImage(
-                                                ImageSource.camera, context);
-                                            Navigator.of(context).pop();
-                                          },
-                                          icon: const Icon(
-                                            Icons.camera_alt_rounded,
-                                          ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {
-                                            getImage(
-                                                ImageSource.gallery, context);
-                                            Navigator.of(context).pop();
-                                          },
-                                          icon: const Icon(
-                                            Icons.image,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: Colors.grey,
-                            radius: 50,
-                            backgroundImage: image != null
-                                ? FileImage(File(image!))
-                                : const AssetImage('assets/images/hero.png')
-                                    as ImageProvider,
-                          ),
-                        ),
                         TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -201,19 +146,19 @@ class _ScreenAddState extends State<ScreenAdd> {
     final address = _addresscontroller.text.trim();
     final mobile = _mobilecontroller.text.trim();
 
-    if (_validation.currentState!.validate() && image != null) {
+    if (_validation.currentState!.validate()) {
       final student = Studentmodel(
-          name: name,
-          age: age,
-          address: address,
-          mobile: mobile,
-          image: image!);
+        name: name,
+        age: age,
+        address: address,
+        mobile: mobile,
+      );
       await addStudent(student);
 
       Navigator.of(context).pop();
       clearStudentProfilephoto();
       submitbuttondetailsok(name);
-    } else if (_validation.currentState!.validate() && image == null) {
+    } else {
       submitbuttondetailnotok();
     }
   }
@@ -223,9 +168,6 @@ class _ScreenAddState extends State<ScreenAdd> {
     _agecontroller.text = '';
     _addresscontroller.text = '';
     _mobilecontroller.text = '';
-    setState(() {
-      image = null;
-    });
   }
 
   submitbuttondetailsok(data) {
@@ -251,19 +193,10 @@ class _ScreenAddState extends State<ScreenAdd> {
         backgroundColor: Colors.red,
         margin: EdgeInsets.all(10),
         content: Text(
-          'Please Add Student Identity Photo',
+          'Please fill in all mandatory fields',
           textAlign: TextAlign.center,
         ),
       ),
     );
-  }
-
-  Future<void> getImage(ImageSource source, BuildContext context) async {
-    final pickedImage = await ImagePicker().pickImage(source: source);
-    if (pickedImage != null) {
-      setState(() {
-        image = pickedImage.path;
-      });
-    }
   }
 }

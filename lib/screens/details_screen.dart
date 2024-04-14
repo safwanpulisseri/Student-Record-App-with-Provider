@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
@@ -117,19 +116,6 @@ class ScreenDetails extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: SizedBox(
-                        height: 220,
-                        width: 220,
-                        child: studentdetails.image.isNotEmpty
-                            ? Image.file(
-                                File(studentdetails.image),
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                'assets/images/hero.png',
-                                fit: BoxFit.cover,
-                              ),
-                      ),
                     ),
                   ),
                 ],
