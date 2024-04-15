@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
 import 'package:student_details_app/screens/add_screen.dart';
 import 'package:student_details_app/screens/details_screen.dart';
-import 'package:student_details_app/widgets/search.dart';
+import 'package:student_details_app/screens/search.dart';
 
-class ScreenHome extends StatefulWidget {
+class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
 
-  @override
-  State<ScreenHome> createState() => _ScreenHomeState();
-}
-
-class _ScreenHomeState extends State<ScreenHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +24,10 @@ class _ScreenHomeState extends State<ScreenHome> {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(
-                context: context,
-                delegate: StudentSearchDelegate(),
-              );
+              // showSearch(
+              //   context: context,
+              //   delegate: StudentSearchDelegate(),
+              // );
             },
             icon: const Icon(
               Icons.search,
@@ -42,11 +38,11 @@ class _ScreenHomeState extends State<ScreenHome> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ValueListenableBuilder(
-          valueListenable: studentlistNotifier,
-          builder: (BuildContext ctx, List<Studentmodel> studentList,
-              Widget? child) {
-            if (studentList.isEmpty) {
+
+        child: Consumer<Studentcontoller>(
+          builder: (context, value, child) {
+            final values = value.students;
+            if (values.isEmpty) {
               return const Center(
                 child: Text(
                   'No student records found.',
@@ -54,6 +50,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                 ),
               );
             }
+
             return GridView.builder(
               scrollDirection: Axis.vertical,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -61,9 +58,9 @@ class _ScreenHomeState extends State<ScreenHome> {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: studentList.length,
+              itemCount: values.length,
               itemBuilder: (ctx, index) {
-                final data = studentList[index];
+                final data = values[index];
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -108,6 +105,8 @@ class _ScreenHomeState extends State<ScreenHome> {
             );
           },
         ),
+
+        // ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
@@ -115,7 +114,7 @@ class _ScreenHomeState extends State<ScreenHome> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ScreenAdd()),
+            MaterialPageRoute(builder: (context) => ScreenAdd()),
           );
         },
         child: const Icon(Icons.add),

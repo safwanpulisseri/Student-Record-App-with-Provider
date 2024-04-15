@@ -58,28 +58,28 @@ class ScreenDetails extends StatelessWidget {
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  deleteStudent(studentdetails.id!);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (ctx) =>
-                                              const ScreenHome()));
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Successfully Deleted'),
-                                      behavior: SnackBarBehavior.floating,
-                                      margin: EdgeInsets.all(10),
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  );
-                                },
-                                child: const Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              )
+                              // TextButton(
+                              //   onPressed: () {
+                              //     deleteStudent(studentdetails.id!);
+                              //     Navigator.push(
+                              //         context,
+                              //         MaterialPageRoute(
+                              //             builder: (ctx) =>
+                              //                 const ScreenHome()));
+                              //     ScaffoldMessenger.of(context).showSnackBar(
+                              //       const SnackBar(
+                              //         content: Text('Successfully Deleted'),
+                              //         behavior: SnackBarBehavior.floating,
+                              //         margin: EdgeInsets.all(10),
+                              //         backgroundColor: Colors.red,
+                              //       ),
+                              //     );
+                              //   },
+                              //   child: const Text(
+                              //     'Delete',
+                              //     style: TextStyle(color: Colors.red),
+                              //   ),
+                              // )
                             ],
                           );
                         },
@@ -93,13 +93,13 @@ class ScreenDetails extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ScreenUpdate(studentDetails: studentdetails),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         ScreenUpdate(studentDetails: studentdetails),
+                      //   ),
+                      // );
                     },
                     icon: Icon(
                       Icons.edit_square,
