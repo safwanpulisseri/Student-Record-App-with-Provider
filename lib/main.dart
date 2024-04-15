@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_details_app/controller/controller.dart';
+import 'package:student_details_app/screens/edit_student/edit_conreoller.dart';
 import 'package:student_details_app/screens/home_screen.dart';
 
-// Future<void> main() async {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   var database = Studentcontoller();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Studentcontoller()),
-        //  ChangeNotifierProvider(create: (context) => Editcontroll()),
+        ChangeNotifierProvider(create: (context) => Editcontroll()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

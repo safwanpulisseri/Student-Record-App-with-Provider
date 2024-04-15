@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
+import 'package:student_details_app/screens/edit_student/edit_screen.dart';
 import 'package:student_details_app/screens/home_screen.dart';
-import 'package:student_details_app/screens/update_screen.dart';
 import 'package:student_details_app/widgets/snackbar.dart';
 
 class ScreenDetails extends StatelessWidget {
@@ -89,13 +89,14 @@ class ScreenDetails extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) =>
-                      //         ScreenUpdate(studentDetails: studentdetails),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScreenUpdate(
+                            studentDetails: studentdetails,
+                          ),
+                        ),
+                      );
                     },
                     icon: Icon(
                       Icons.edit_square,

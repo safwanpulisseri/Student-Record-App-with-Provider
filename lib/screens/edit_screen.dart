@@ -1,41 +1,46 @@
+// import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 // import 'package:student_details_app/model/model_db.dart';
 // import 'package:student_details_app/screens/home_screen.dart';
 
-// class ScreenUpdate extends StatefulWidget {
+
+
+// class ScreenUpdate extends StatelessWidget {
 //   final Studentmodel studentDetails;
 
-//   const ScreenUpdate({super.key, required this.studentDetails});
+//   ScreenUpdate({super.key, required this.studentDetails});
 
-//   @override
-//   State<ScreenUpdate> createState() => _ScreenUpdateState();
-// }
+// //   @override
+// //   State<ScreenUpdate> createState() => _ScreenUpdateState();
+// // }
 
-// class _ScreenUpdateState extends State<ScreenUpdate> {
-//   late TextEditingController _nameController;
-//   late TextEditingController _ageController;
-//   late TextEditingController _addressController;
-//   late TextEditingController _mobileController;
+// // class _ScreenUpdateState extends State<ScreenUpdate> {
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     _nameController = TextEditingController(text: widget.studentDetails.name);
-//     _ageController = TextEditingController(text: widget.studentDetails.age);
-//     _addressController =
-//         TextEditingController(text: widget.studentDetails.address);
-//     _mobileController =
-//         TextEditingController(text: widget.studentDetails.mobile);
-//   }
+//   // late TextEditingController _nameController;
+//   // late TextEditingController _ageController;
+//   // late TextEditingController _addressController;
+//   // late TextEditingController _mobileController;
 
-//   @override
-//   void dispose() {
-//     _nameController.dispose();
-//     _ageController.dispose();
-//     _addressController.dispose();
-//     _mobileController.dispose();
-//     super.dispose();
-//   }
+//   // @override
+//   // void initState() {
+//   //   super.initState();
+//   // _nameController = TextEditingController(text: widget.studentDetails.name);
+//   // _ageController = TextEditingController(text: widget.studentDetails.age);
+//   // _addressController =
+//   //     TextEditingController(text: widget.studentDetails.address);
+//   // _mobileController =
+//   //     TextEditingController(text: widget.studentDetails.mobile);
+//   //}
+
+//   // @override
+//   // void dispose() {
+//   // _nameController.dispose();
+//   // _ageController.dispose();
+//   // _addressController.dispose();
+//   // _mobileController.dispose();
+//   //   super.dispose();
+//   // }
 
 //   @override
 //   Widget build(BuildContext context) {
