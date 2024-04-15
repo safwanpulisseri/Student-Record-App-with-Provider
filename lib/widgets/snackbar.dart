@@ -9,6 +9,9 @@ snackbar(String text, context) {
     content: Text(
       text,
       textAlign: TextAlign.center,
+      style: const TextStyle(
+        color: Colors.black,
+      ),
     ),
   ));
 }

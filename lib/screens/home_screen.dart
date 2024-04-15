@@ -24,10 +24,10 @@ class ScreenHome extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // showSearch(
-              //   context: context,
-              //   delegate: StudentSearchDelegate(),
-              // );
+              showSearch(
+                context: context,
+                delegate: StudentSearchDelegate(),
+              );
             },
             icon: const Icon(
               Icons.search,
@@ -38,7 +38,6 @@ class ScreenHome extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-
         child: Consumer<Studentcontoller>(
           builder: (context, value, child) {
             final values = value.students;
@@ -66,8 +65,10 @@ class ScreenHome extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ScreenDetails(studentdetails: data),
+                        builder: (context) => ScreenDetails(
+                          studentdetails: data,
+                          value: value,
+                        ),
                       ),
                     );
                   },
@@ -105,8 +106,6 @@ class ScreenHome extends StatelessWidget {
             );
           },
         ),
-
-        // ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

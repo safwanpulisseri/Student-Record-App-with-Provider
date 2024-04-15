@@ -3,11 +3,14 @@ import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/model/model_db.dart';
 import 'package:student_details_app/screens/home_screen.dart';
 import 'package:student_details_app/screens/update_screen.dart';
+import 'package:student_details_app/widgets/snackbar.dart';
 
 class ScreenDetails extends StatelessWidget {
   final Studentmodel studentdetails;
+  final Studentcontoller value;
 
-  const ScreenDetails({super.key, required this.studentdetails});
+  const ScreenDetails(
+      {super.key, required this.studentdetails, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -58,28 +61,21 @@ class ScreenDetails extends StatelessWidget {
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              // TextButton(
-                              //   onPressed: () {
-                              //     deleteStudent(studentdetails.id!);
-                              //     Navigator.push(
-                              //         context,
-                              //         MaterialPageRoute(
-                              //             builder: (ctx) =>
-                              //                 const ScreenHome()));
-                              //     ScaffoldMessenger.of(context).showSnackBar(
-                              //       const SnackBar(
-                              //         content: Text('Successfully Deleted'),
-                              //         behavior: SnackBarBehavior.floating,
-                              //         margin: EdgeInsets.all(10),
-                              //         backgroundColor: Colors.red,
-                              //       ),
-                              //     );
-                              //   },
-                              //   child: const Text(
-                              //     'Delete',
-                              //     style: TextStyle(color: Colors.red),
-                              //   ),
-                              // )
+                              TextButton(
+                                onPressed: () {
+                                  value.deleteStudent(studentdetails.id!);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (ctx) =>
+                                              const ScreenHome()));
+                                  snackbar('Deleted', context);
+                                },
+                                child: const Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              )
                             ],
                           );
                         },
