@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_details_app/controller/controller.dart';
 import 'package:student_details_app/screens/edit_student/edit_conreoller.dart';
-import 'package:student_details_app/screens/home_screen.dart';
+//import 'package:student_details_app/screens/home_screen.dart';
+import 'package:student_details_app/screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
           useMaterial3: true,
         ),
-        home: const ScreenHome(),
+        home: const ScreenSplash(),
       ),
     );
   }
